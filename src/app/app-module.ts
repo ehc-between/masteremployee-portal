@@ -16,6 +16,10 @@ import { SidebarFooter } from './@shared/components/sidebar/components/sidebar-f
 import { HeaderDashboard } from './@shared/components/header/components/header-menu/components/header-dashboard/header-dashboard';
 import { HeaderPages } from './@shared/components/header/components/header-menu/components/header-pages/header-pages';
 import { HeaderSearch } from './@shared/components/header/components/header-navbar/components/header-search/header-search';
+import { HeaderNotification } from './@shared/components/header/components/header-navbar/components/header-notification/header-notification';
+import { HeaderLanguage } from './@shared/components/header/components/header-navbar/components/header-language/header-language';
+import { HeaderTheme } from './@shared/components/header/components/header-navbar/components/header-theme/header-theme';
+import { ThemeMenu } from './@shared/components/header/components/header-navbar/components/header-theme/components/theme-menu/theme-menu';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,11 @@ import { HeaderSearch } from './@shared/components/header/components/header-navb
     SidebarFooter,
     HeaderDashboard,
     HeaderPages,
-    HeaderSearch
+    HeaderSearch,
+    HeaderNotification,
+    HeaderLanguage,
+    HeaderTheme,
+    ThemeMenu
   ],
   imports: [
     BrowserModule,

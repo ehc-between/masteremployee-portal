@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <base href="/" /> <!-- important -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MasterEmployee Portal</title>
+  <link rel="icon" href="assets/media/logos/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+  <script>var hostUrl = "assets/";</script>
+  <script>
+    (function () {
+      var KEY = 'theme-mode'; // you can name it 'kt_theme_mode_value' to match Keen docs
+      var saved = localStorage.getItem(KEY) || 'system'; // 'light' | 'dark' | 'system'
+      var mql = window.matchMedia('(prefers-color-scheme: dark)');
+      var effective = saved === 'system' ? (mql.matches ? 'dark' : 'light') : saved;
+
+      // Keen/Bootstrap read these:
+      document.documentElement.setAttribute('data-bs-theme-mode', saved);
+      document.documentElement.setAttribute('data-bs-theme', effective);
+    })();
+  </script>
+</head>
+<body class="app-default">
+<app-root></app-root>
+</body>
+</html>

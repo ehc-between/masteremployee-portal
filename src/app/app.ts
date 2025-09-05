@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, inject, signal} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
 import {filter} from 'rxjs';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,13 @@ import {filter} from 'rxjs';
 })
 export class App implements AfterViewInit{
   protected readonly title = signal('masteremployee-portal');
+  private translate = inject(TranslateService);
+
+  constructor() {
+    this.translate.addLangs(['en', 'no'])
+    this.translate.setFallbackLang('en')
+    this.translate.use('en')
+  }
 
   private router = inject(Router);
 

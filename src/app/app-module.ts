@@ -21,6 +21,14 @@ import { HeaderLanguage } from './@shared/components/header/components/header-na
 import { HeaderTheme } from './@shared/components/header/components/header-navbar/components/header-theme/header-theme';
 import { ThemeMenu } from './@shared/components/header/components/header-navbar/components/header-theme/components/theme-menu/theme-menu';
 import { HeaderUserMenu } from './@shared/components/header/components/header-navbar/components/header-user-menu/header-user-menu';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {HttpClient, provideHttpClient} from '@angular/common/http';
+import {provideTranslateService, TranslateLoader, TranslateModule, TranslatePipe} from '@ngx-translate/core';
+import {provideTranslateHttpLoader, TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader();
+}
 
 @NgModule({
   declarations: [
@@ -46,10 +54,21 @@ import { HeaderUserMenu } from './@shared/components/header/components/header-na
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FontAwesomeModule,
+    TranslatePipe
   ],
   providers: [
-    provideBrowserGlobalErrorListeners()
+    provideBrowserGlobalErrorListeners(),
+    provideHttpClient(),
+    provideTranslateService({
+      loader: provideTranslateHttpLoader({
+        prefix: '/assets/i18n/',
+        suffix: '.json'
+      }),
+      fallbackLang: 'en',
+      lang: 'en'
+    })
   ],
   bootstrap: [App]
 })

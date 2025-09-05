@@ -20,6 +20,7 @@ import { HeaderNotification } from './@shared/components/header/components/heade
 import { HeaderLanguage } from './@shared/components/header/components/header-navbar/components/header-language/header-language';
 import { HeaderTheme } from './@shared/components/header/components/header-navbar/components/header-theme/header-theme';
 import { ThemeMenu } from './@shared/components/header/components/header-navbar/components/header-theme/components/theme-menu/theme-menu';
+import { HeaderUserMenu } from './@shared/components/header/components/header-navbar/components/header-user-menu/header-user-menu';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ThemeMenu } from './@shared/components/header/components/header-navbar/
     HeaderNotification,
     HeaderLanguage,
     HeaderTheme,
-    ThemeMenu
+    ThemeMenu,
+    HeaderUserMenu
   ],
   imports: [
     BrowserModule,

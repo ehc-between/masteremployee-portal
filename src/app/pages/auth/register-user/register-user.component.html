@@ -1,0 +1,99 @@
+<div class="box d-flex justify-content-center" style="padding-top: 150px">
+  <div>
+    <div class="row d-flex align-items-center justify-content-start spacing-45">
+      <div class="col-12 d-flex align-items-center">
+        <img src="assets/brand/MASTER-EMPLOYEE_LOGO-04.png" style="height: 76px">
+      </div>
+    </div>
+    <div class="row spacing-45">
+      <div class="col-12">
+        <h1 class="mb-0" style="color: white">{{ "registerUser.title" | translate }}</h1>
+      </div>
+    </div>
+    <form [formGroup]="form" >
+      <div class="spacing-20">
+        <label for="email" class="form-label f-16" style="color: white;">{{ "login.emailLabel" | translate }}</label>
+        <div class="input-group">
+          <input
+            formControlName="email"
+            required
+            [placeholder]="'login.emailLabel' | translate"
+            type="text"
+            id="email"
+            class="form-control"
+          >
+        </div>
+        @if (form.get('email')?.invalid && form.get('email')?.touched) {
+          <span class="text-danger">{{ "login.invalidEmail" | translate }}</span>
+        }
+      </div>
+      <div class="spacing-20">
+        <label for="password" class="form-label f-16" style="color: white;">
+          {{ "registerUser.passwordLabel" | translate }}
+        </label>
+        <div class="form-group position-relative">
+          <input
+            id="password"
+            type="password"
+            class="form-control"
+            name="password"
+            formControlName="password"
+            placeholder="{{'registerUser.passwordLabel' | translate}}"
+            minlength="8"
+            required>
+        </div>
+
+        <!-- Password Strength Error Message -->
+        @if (form.get('password')!.hasError('passwordStrength') && form.get('password')?.touched) {
+          <span class="text-danger">
+            Password must be at least 8 characters long, contain at least 1 number and 1 special character.
+          </span>
+        }
+      </div>
+
+      <div class="spacing-30">
+        <label for="confirmPassword" class="form-label f-16" style="color: white;">
+          {{ "registerUser.confirmPasswordLabel" | translate }}
+        </label>
+        <div class="form-group position-relative">
+          <input
+            id="confirmPassword"
+            type="password"
+            class="form-control"
+            name="password"
+            formControlName="confirmPassword"
+            placeholder="{{'registerUser.confirmPasswordLabel' | translate}}"
+            minlength="8"
+            required>
+        </div>
+      </div>
+
+      <div class="row spacing-8">
+        <div class="col-12">
+          <i class="fa fa-check me-2" style="color: #ED622E"></i>
+          <a style="color: white"> Cannot contain your name or email address</a>
+        </div>
+      </div>
+      <div class="row spacing-8">
+        <div class="col-12">
+          <i class="fa fa-check me-2" style="color: #ED622E"></i>
+          <a style="color: white"> At least 8 characters</a>
+        </div>
+      </div>
+      <div class="row spacing-30">
+        <div class="col-12">
+          <i class="fa fa-check me-2" style="color: #ED622E"></i>
+          <a style="color: white"> Contains a number and a symbol</a>
+        </div>
+      </div>
+
+      <div class="form-group mt-3 ">
+        <div class="d-flex justify-content-between spacing-30">
+          <button class="btn btn-primary btn-block w-100" style="background-color: #5DA9D7; border-color: #5DA9D7; height: 48px" (click)="onSubmit()" [disabled]="">
+            {{ "registerUser.registerBtn" | translate }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div> <!-- end card-body -->
+</div>

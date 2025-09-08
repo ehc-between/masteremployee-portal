@@ -1,0 +1,46 @@
+.account-pages {
+  background-color: #0D0F11;
+  height: 100%;
+}
+
+.form-edit-picture-wrapper {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.80) 20%, rgba(237, 116, 46, 0.86) 80%),
+  url(/assets/images/auth-image.jpeg);
+  border-radius: 20px;
+  /*overflow: hidden;*/
+  background-size: cover;
+  background-position: center;
+  position: relative; /* Ensure this container is the positioned parent */
+}
+
+/* Style for the text overlay */
+.overlay-text {
+  position: absolute;
+  /*top: 5%; !* Keep this as is to control vertical position of the upper content *!*/
+  /*left: 15%; !* Keep this to control horizontal positioning *!*/
+  width: 70%;
+  height: 90%; /* Ensure it doesn't take up more than 90% of the parent height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* This will space out the top and bottom content */
+  color: white;
+  z-index: 1; /* Keep it above the background */
+  padding-bottom: 10px; /* Ensures there is space between bottom content and container's bottom */
+}
+
+.overlay-text .top {
+  flex: 1;
+}
+
+.overlay-text .bottom {
+  margin-top: auto; /* Pushes this to the bottom */
+  /*padding: 10px 0;*/
+}
+
+.overlay-text h1 {
+  font-size: 2rem; /* Customize as needed */
+}
+
+.overlay-text p {
+  font-size: 1rem; /* Customize as needed */
+}

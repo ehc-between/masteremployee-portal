@@ -1,4 +1,4 @@
-import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule, provideBrowserGlobalErrorListeners, isDevMode} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing-module';
@@ -25,6 +25,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {HttpClient, provideHttpClient} from '@angular/common/http';
 import {provideTranslateService, TranslateLoader, TranslateModule, TranslatePipe} from '@ngx-translate/core';
 import {provideTranslateHttpLoader, TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import {LoginComponent} from './pages/auth/login/login.component';
+import { Recruiter } from './pages/dashboards/recruiter/recruiter';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader();
@@ -50,13 +53,20 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     HeaderLanguage,
     HeaderTheme,
     ThemeMenu,
-    HeaderUserMenu
+    HeaderUserMenu,
+    Recruiter
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    TranslatePipe
+    TranslatePipe,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
@@ -70,6 +80,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       lang: 'en'
     })
   ],
-  bootstrap: [App]
+  bootstrap: [App],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

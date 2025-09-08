@@ -29,26 +29,28 @@
     }
   </script>
   <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
-    <div class="app-page  flex-column flex-column-fluid " id="kt_app_page">
-      <app-header></app-header>
-      <div class="app-wrapper  flex-column flex-row-fluid " id="kt_app_wrapper">
-        <app-sidebar></app-sidebar>
-        <!--begin::Main-->
-        <div class="app-main flex-column flex-row-fluid " id="kt_app_main">
-          <div class="d-flex flex-column flex-column-fluid">
-            <app-toolbar></app-toolbar>
-            <app-content></app-content>
+    @if (isLoggedIn) {
+      <div class="app-page  flex-column flex-column-fluid " id="kt_app_page">
+        <app-header></app-header>
+        <div class="app-wrapper  flex-column flex-row-fluid " id="kt_app_wrapper">
+          <app-sidebar></app-sidebar>
+          <!--begin::Main-->
+          <div class="app-main flex-column flex-row-fluid" style="height: calc(100vh - 70px)" id="kt_app_main">
+            <div class="d-flex flex-column flex-column-fluid pt-10">
+              <app-content></app-content>
+            </div>
+            <app-footer class="mt-auto"></app-footer>
           </div>
-          <app-footer/>
         </div>
       </div>
-    </div>
+    }
+    @else if (!isLoggedIn || currentPath === '/home' || currentPath === '/auth/forgot-password') {
+      <div class="app-page  flex-column flex-column-fluid " id="kt_app_page">
+        <div class="app-wrapper  flex-column flex-row-fluid " id="kt_app_wrapper">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    }
   </div>
-  <!--layout-partial:partials/_scrolltop.html-->
-  <!--begin::Modals-->
-  <!--layout-partial:partials/modals/_upgrade-plan.html-->
-  <!--layout-partial:partials/modals/create-campaign/_main.html-->
-  <!--layout-partial:partials/modals/users-search/_main.html-->
-  <!--layout-partial:partials/modals/_invite-friends.html-->
+  <chatlio-widget widgetid="d66926ec-19cc-4e6d-56f0-385a6c14ee00"></chatlio-widget>
 </body>
-<!--layout-partial:partials/_drawers.html-->

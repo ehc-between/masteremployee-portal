@@ -1,14 +1,15 @@
 <div class="menu-state-bg menu-extended overflow-hidden overflow-lg-visible py-2 py-lg-6" data-kt-menu-dismiss="true">
   <div class="row px-lg-5">
+
     <div class="col-lg-6 py-1">
       <div class="menu-item p-0 m-0">
-        <a href="?page=index" class="menu-link active">
+        <a [routerLink]="['/dashboards','crm']"
+           class="menu-link"
+           routerLinkActive="active"
+           [routerLinkActiveOptions]="{ exact: true }">
           <span class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-40px h-40px me-3">
             <i class="ki-duotone ki-basket text-primary fs-1">
-              <span class="path1"></span>
-              <span class="path2"></span>
-              <span class="path3"></span>
-              <span class="path4"></span>
+              <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
             </i>
           </span>
           <span class="d-flex flex-column">
@@ -18,14 +19,15 @@
         </a>
       </div>
     </div>
+
     <div class="col-lg-6 py-1">
       <div class="menu-item p-0 m-0">
-        <a href="?page=dashboards/projects" class="menu-link ">
+        <a [routerLink]="['/dashboards','recruiter']"
+           class="menu-link"
+           routerLinkActive="active"
+           [routerLinkActiveOptions]="{ exact: true }">
           <span class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-40px h-40px me-3">
-            <i class="ki-duotone ki-abstract-44 text-info fs-1">
-              <span class="path1"></span>
-              <span class="path2"></span>
-            </i>
+            <i class="ki-duotone ki-abstract-44 text-info fs-1"><span class="path1"></span><span class="path2"></span></i>
           </span>
           <span class="d-flex flex-column">
             <span class="fs-6 fw-semibold text-gray-800">Recruiter</span>
@@ -34,15 +36,16 @@
         </a>
       </div>
     </div>
+
     <div class="col-lg-6 py-1">
       <div class="menu-item p-0 m-0">
-        <a href="?page=dashboards/ecommerce" class="menu-link ">
+        <a [routerLink]="['/dashboards','toolbox']"
+           class="menu-link"
+           routerLinkActive="active"
+           [routerLinkActiveOptions]="{ exact: true }">
           <span class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-40px h-40px me-3">
             <i class="ki-duotone ki-element-11 text-danger fs-1">
-              <span class="path1"></span>
-              <span class="path2"></span>
-              <span class="path3"></span>
-              <span class="path4"></span>
+              <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
             </i>
           </span>
           <span class="d-flex flex-column">
@@ -52,15 +55,16 @@
         </a>
       </div>
     </div>
+
     <div class="col-lg-6 py-1">
       <div class="menu-item p-0 m-0">
-        <a href="?page=dashboards/marketing" class="menu-link ">
+        <a [routerLink]="['/dashboards','api']"
+           class="menu-link"
+           routerLinkActive="active"
+           [routerLinkActiveOptions]="{ exact: true }">
           <span class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-40px h-40px me-3">
             <i class="ki-duotone ki-chart-simple text-gray-900 fs-1">
-              <span class="path1"></span>
-              <span class="path2"></span>
-              <span class="path3"></span>
-              <span class="path4"></span>
+              <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
             </i>
           </span>
           <span class="d-flex flex-column">
@@ -70,5 +74,23 @@
         </a>
       </div>
     </div>
+
+    <div class="col-lg-6 py-1">
+      <div class="menu-item p-0 m-0">
+        <a [routerLink]="['/dashboards','company-administration']"
+           class="menu-link"
+           routerLinkActive="active"
+           [routerLinkActiveOptions]="{ exact: true }">
+          <span class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-40px h-40px me-3">
+            <i class="fa far fa-xl fa-building"></i>
+          </span>
+          <span class="d-flex flex-column">
+            <span class="fs-6 fw-semibold text-gray-800">Administration</span>
+            <span class="fs-7 fw-semibold text-muted">Company administration</span>
+          </span>
+        </a>
+      </div>
+    </div>
+
   </div>
 </div>

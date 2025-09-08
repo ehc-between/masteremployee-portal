@@ -47,6 +47,11 @@ function convertDateLocalToUTC(date: Date) {
   return new Date(date.getTime() + date.getTimezoneOffset() * 60000)
 }
 
+export function onImageError(event: Event, type: String) {
+  const img = event.target as HTMLImageElement;
+  img.src = 'assets/media/avatars/blank.png'; // your fallback image
+}
+
 export function convertStringToTime(timeString: string): Date {
   // Split the time string into hours and minutes
   const [hoursStr, minutesStr] = timeString.split(':');

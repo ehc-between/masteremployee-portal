@@ -48,13 +48,13 @@ export class Header {
       }
       console.log(this.userObj.profile_image_url)
     });
-    this.getUserFavorites()
+    // this.getUserFavorites()
     setTimeout(() => {
       this.userService.getUserEntityRelation().subscribe((data) => {
         this.user = data.find((relation) => relation.entity_id == this.storageService.getSelectedCompanyId())!;
-        this.userService.userFavorites$.subscribe((res) => {
-          this.userFavorites = res!
-        })
+        // this.userService.userFavorites$.subscribe((res) => {
+        //   this.userFavorites = res!
+        // })
       });
     }, 1000);
     let token = this.authService.getToken()
@@ -82,11 +82,11 @@ export class Header {
     }
   }
 
-  getUserFavorites() {
-    this.userService.getAssistantGroupFavorites().subscribe((res) => {
-      this.userService.userFavoritesSubject.next(res)
-    })
-  }
+  // getUserFavorites() {
+  //   this.userService.getAssistantGroupFavorites().subscribe((res) => {
+  //     this.userService.userFavoritesSubject.next(res)
+  //   })
+  // }
 
   goToAssistantDetails(favorite: UserAssistantGroupFavoriteResponse) {
     this.router.navigate([`/assistants/details/${favorite.assistant_group.assistant_group_id}`]);

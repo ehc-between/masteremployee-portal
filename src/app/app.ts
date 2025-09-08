@@ -5,6 +5,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {environment} from '../environments/environment';
 import {SwUpdate} from '@angular/service-worker';
 import {AuthService} from './@core/services/auth.service';
+import {StorageService} from './@core/services/storage.service';
 
 declare global {
   interface Window { _chatlio?: any & { page?: () => void }; }
@@ -24,10 +25,16 @@ export class App implements AfterViewInit{
 
   constructor(private swUpdate: SwUpdate,
               private appRef: ApplicationRef,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private storageService: StorageService) {
     this.translate.addLangs(['en', 'no'])
     this.translate.setFallbackLang('en')
-    this.translate.use('en')
+    if (this.storageService.get('currentLang')) {
+      this.translate.use(this.storageService.get('currentLang')!);
+    }
+    else {
+      this.translate.use('en');
+    }
     this.authService.init();
     this.authService.isAuthenticated.subscribe((data) => {
       console.log("isAuthenticated", data)

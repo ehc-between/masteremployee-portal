@@ -6,9 +6,13 @@ import {RegisterUserComponent} from './pages/auth/register-user/register-user.co
 import {ForgotPassordComponent} from './pages/auth/forgot-passord/forgot-passord.component';
 import {ResetPasswordComponent} from './pages/auth/reset-password/reset-password.component';
 import {Recruiter} from './pages/dashboards/recruiter/recruiter';
+import {Crm} from './pages/dashboards/crm/crm';
+import {Api} from './pages/dashboards/api/api';
+import {Toolbox} from './pages/dashboards/toolbox/toolbox';
+import {CompanyAdministration} from './pages/dashboards/company-administration/company-administration';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+  { path: '', redirectTo: 'dashboards/crm', pathMatch: 'full'},
   { path: 'auth', component: LayoutComponent, children: [
       { path: 'login', component: LoginComponent },
       { path: 'register-user', component: RegisterUserComponent},
@@ -19,6 +23,10 @@ const routes: Routes = [
   {
     path: 'dashboards', children: [
       { path: 'recruiter', component: Recruiter },
+      { path: 'crm', component: Crm },
+      { path: 'api', component: Api },
+      { path: 'toolbox', component: Toolbox },
+      { path: 'company-administration', component: CompanyAdministration },
     ]
   }
 ]

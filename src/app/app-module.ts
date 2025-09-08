@@ -28,6 +28,10 @@ import {provideTranslateHttpLoader, TranslateHttpLoader} from '@ngx-translate/ht
 import { ServiceWorkerModule } from '@angular/service-worker';
 import {LoginComponent} from './pages/auth/login/login.component';
 import { Recruiter } from './pages/dashboards/recruiter/recruiter';
+import { Crm } from './pages/dashboards/crm/crm';
+import { Toolbox } from './pages/dashboards/toolbox/toolbox';
+import { Api } from './pages/dashboards/api/api';
+import { CompanyAdministration } from './pages/dashboards/company-administration/company-administration';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader();
@@ -54,7 +58,11 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     HeaderTheme,
     ThemeMenu,
     HeaderUserMenu,
-    Recruiter
+    Recruiter,
+    Crm,
+    Toolbox,
+    Api,
+    CompanyAdministration
   ],
   imports: [
     BrowserModule,

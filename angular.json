@@ -43,7 +43,8 @@
               "src/assets/plugins/global/plugins.bundle.js",
               "src/assets/shims/keen-widgets-noop.js",
               "src/assets/js/scripts.bundle.js",
-              "src/assets/js/widgets.bundle.js"
+              "src/assets/js/widgets.bundle.js",
+              "node_modules/toastr/build/toastr.min.js"
             ]
           },
           "configurations": {

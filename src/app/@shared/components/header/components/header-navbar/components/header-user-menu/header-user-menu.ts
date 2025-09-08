@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {UserResponse} from '../../../../../../models/response.module';
+import {onImageError} from '../../../../../../../@core/utils/utils.service';
 
 @Component({
   selector: 'app-header-user-menu',
@@ -9,4 +10,5 @@ import {UserResponse} from '../../../../../../models/response.module';
 })
 export class HeaderUserMenu {
   @Input() user: UserResponse
+  protected readonly onImageError = onImageError;
 }

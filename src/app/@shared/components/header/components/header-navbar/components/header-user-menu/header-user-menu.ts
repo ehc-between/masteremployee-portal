@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {UserResponse} from '../../../../../../models/response.module';
 
 @Component({
   selector: 'app-header-user-menu',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './header-user-menu.css'
 })
 export class HeaderUserMenu {
-
+  @Input() user: UserResponse
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {StorageService} from '../../../../../@core/services/storage.service';
 
 @Component({
   selector: 'app-sidebar-menu',
@@ -8,4 +9,6 @@ import { Component } from '@angular/core';
 })
 export class SidebarMenu {
 
+  constructor(public storageService: StorageService) {
+  }
 }

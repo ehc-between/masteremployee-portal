@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {UserResponse} from '../../../../models/response.module';
+import {CompanyResponse, UserResponse} from '../../../../models/response.module';
 import {onImageError} from "../../../../../@core/utils/utils.service";
 import {StorageService} from '../../../../../@core/services/storage.service';
 
@@ -11,6 +11,7 @@ import {StorageService} from '../../../../../@core/services/storage.service';
 })
 export class HeaderNavbar {
   @Input() user: UserResponse
+  @Input() companies: CompanyResponse[]
 
   constructor(public storageService: StorageService) {
   }

@@ -1,1 +1,60 @@
-/* You can add global styles to this file, and also import other style files */
+/*@import 'ngx-toastr/toastr.css';*/
+
+/* make sure it floats above modals/menus */
+.toast-container {
+  z-index: 2147483647 !important;
+}
+
+
+.app-toast-layer {
+  z-index: 2147483647;!important;
+}
+
+
+/* Success toast */
+.toast-success .toast-header {
+  background-color: #198754; /* green */
+  color: #fff;
+}
+.toast-success .toast-body {
+  background-color: #d1e7dd; /* light green */
+  color: #0f5132;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* Error toast */
+.toast-error .toast-header {
+  background-color: #dc3545; /* red */
+  color: #fff;
+}
+.toast-error .toast-body {
+  background-color: #f8d7da; /* light red */
+  color: #842029;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* Info toast */
+.toast-info .toast-header {
+  background-color: #0dcaf0; /* cyan */
+  color: #000;
+}
+.toast-info .toast-body {
+  background-color: #cff4fc; /* light cyan */
+  color: #055160;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* Warning toast */
+.toast-warning .toast-header {
+  background-color: #ffc107; /* yellow */
+  color: #000;
+}
+.toast-warning .toast-body {
+  background-color: #fff3cd; /* light yellow */
+  color: #664d03;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}

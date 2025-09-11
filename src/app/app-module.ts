@@ -32,6 +32,12 @@ import { Crm } from './pages/dashboards/crm/crm';
 import { Toolbox } from './pages/dashboards/toolbox/toolbox';
 import { Api } from './pages/dashboards/api/api';
 import { CompanyAdministration } from './pages/dashboards/company-administration/company-administration';
+import {SelectoriniComponent} from './@shared/components/selectorini/selectorini.component';
+import { HeaderCompanySelect } from './@shared/components/header/components/header-navbar/components/header-company-select/header-company-select';
+import {provideToastr, ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule, provideAnimations} from '@angular/platform-browser/animations';
+import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
+import { User } from './pages/user/user';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader();
@@ -62,7 +68,9 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     Crm,
     Toolbox,
     Api,
-    CompanyAdministration
+    CompanyAdministration,
+    HeaderCompanySelect,
+    User
   ],
   imports: [
     BrowserModule,
@@ -74,7 +82,9 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    SelectoriniComponent,
+    ToastrModule.forRoot(),
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
@@ -86,7 +96,14 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       }),
       fallbackLang: 'en',
       lang: 'en'
-    })
+    }),
+    provideAnimations(),
+    provideToastr({
+      positionClass: 'toast-top-right',
+      timeOut: 3000,
+      preventDuplicates: true,
+      newestOnTop: true,
+    }),
   ],
   bootstrap: [App],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]

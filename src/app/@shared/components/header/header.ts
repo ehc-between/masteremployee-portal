@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {
   CompanyResponse,
-  UserAssistantGroupFavoriteResponse,
   UserEntityRelationWithoutUserDataResponse,
   UserResponse
 } from '../../models/response.module';
@@ -27,7 +26,6 @@ export class Header {
   initialsKeys: string[];
   initials: string;
   companies: CompanyResponse[]
-  userFavorites: UserAssistantGroupFavoriteResponse[]
   form: FormGroup;
   isDisabled: boolean = false;
   hoverClass: string = '';
@@ -87,10 +85,6 @@ export class Header {
   //     this.userService.userFavoritesSubject.next(res)
   //   })
   // }
-
-  goToAssistantDetails(favorite: UserAssistantGroupFavoriteResponse) {
-    this.router.navigate([`/assistants/details/${favorite.assistant_group.assistant_group_id}`]);
-  }
 
   getAllCompanies() {
     let payload: COR_COY_4 = {

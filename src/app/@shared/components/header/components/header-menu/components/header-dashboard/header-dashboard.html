@@ -5,6 +5,7 @@
       <div class="menu-item p-0 m-0">
         <a [routerLink]="['/dashboards','crm']"
            class="menu-link"
+           (click)="storageService.set('selectedProduct', 'crm')"
            routerLinkActive="active"
            [routerLinkActiveOptions]="{ exact: true }">
           <span class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-40px h-40px me-3">
@@ -24,6 +25,7 @@
       <div class="menu-item p-0 m-0">
         <a [routerLink]="['/dashboards','recruiter']"
            class="menu-link"
+           (click)="storageService.set('selectedProduct', 'recruiter')"
            routerLinkActive="active"
            [routerLinkActiveOptions]="{ exact: true }">
           <span class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-40px h-40px me-3">
@@ -42,6 +44,7 @@
         <a [routerLink]="['/dashboards','toolbox']"
            class="menu-link"
            routerLinkActive="active"
+           (click)="storageService.set('selectedProduct', 'toolbox')"
            [routerLinkActiveOptions]="{ exact: true }">
           <span class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-40px h-40px me-3">
             <i class="ki-duotone ki-element-11 text-danger fs-1">
@@ -61,6 +64,7 @@
         <a [routerLink]="['/dashboards','api']"
            class="menu-link"
            routerLinkActive="active"
+           (click)="storageService.set('selectedProduct', 'api')"
            [routerLinkActiveOptions]="{ exact: true }">
           <span class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-40px h-40px me-3">
             <i class="ki-duotone ki-chart-simple text-gray-900 fs-1">
@@ -80,6 +84,7 @@
         <a [routerLink]="['/dashboards','company-administration']"
            class="menu-link"
            routerLinkActive="active"
+           (click)="storageService.set('selectedProduct', 'company-administration')"
            [routerLinkActiveOptions]="{ exact: true }">
           <span class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-40px h-40px me-3">
             <i class="fa far fa-xl fa-building"></i>

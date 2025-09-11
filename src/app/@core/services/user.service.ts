@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { JwtService } from './jwt.service';
 import { EndpointService } from "../../@shared/endpoints.service";
 import {GetResponse, PostResponse} from "../../@shared/models/global/response-wrapper.service";
-import {UserAssistantGroupFavoriteResponse, UserResponse} from "../../@shared/models/response.module";
+import {UserResponse} from "../../@shared/models/response.module";
 import {
   _USM_USR_27, _USM_USR_28,
   USM_ENT_0, USM_ENT_2, USM_ENT_3,
@@ -25,8 +25,6 @@ import {StorageService} from "./storage.service";
 export class UserService {
   private userSubject = new BehaviorSubject<UserResponse | undefined>(undefined);
   public user = this.userSubject.asObservable().pipe(distinctUntilChanged());
-  public userFavoritesSubject = new BehaviorSubject<UserAssistantGroupFavoriteResponse[] | undefined>(undefined);
-  public userFavorites$ = this.userFavoritesSubject.asObservable().pipe(distinctUntilChanged());
 
   constructor(private http: HttpClient,
               private jwtService: JwtService,
@@ -140,38 +138,6 @@ export class UserService {
 
   removeUserFromEntity(params: USM_ENT_3) {
     return this.endpointService.usm_ent_3(params).pipe(map((data) => {
-    }))
-  }
-
-
-  getAssistantGroupFavorites() {
-    let payload: USM_USR_26 = {
-      company_id: this.storageService.getSelectedCompanyId()
-    }
-    return this.endpointService.usm_usr_26(payload).pipe(map((data) => {
-      return data.data
-    }))
-  }
-
-  addAssistantGroupToFavorites(params: _USM_USR_27) {
-    let payload: USM_USR_27 = {
-      company_id: this.storageService.getSelectedCompanyId(),
-      ...params
-    }
-
-    return this.endpointService.usm_usr_27(payload).pipe(map((data) => {
-      return data.data
-    }))
-  }
-
-  removeAssistantGroupFromFavorites(params: _USM_USR_28) {
-    let payload: USM_USR_28 = {
-      company_id: this.storageService.getSelectedCompanyId(),
-      ...params
-    }
-
-    return this.endpointService.usm_usr_28(payload).pipe(map((data) => {
-      return data
     }))
   }
 

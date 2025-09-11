@@ -1,0 +1,12 @@
+@for (company of companies; track company.company_id) {
+  <div class="menu-item px-3">
+    <a (click)="switchCompany(company)"
+       class="menu-link d-flex px-5"
+       [class.active]="checkSelectedCompany(company)">
+      <span class="symbol symbol-20px me-4">
+        <i class="fa far fa-building fa-xl"></i>
+      </span>
+      {{ company.company_name }}
+    </a>
+  </div>
+}

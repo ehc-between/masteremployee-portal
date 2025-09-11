@@ -1,0 +1,51 @@
+<div class=" form-select bg-body border-body w-200px" [ngClass]="{ 'rounded-4': !isPrefix, 'rounded-start-4': isPrefix }">
+  <!-- Trigger -->
+  <div class="dropdown-toggle"
+       [class.disabled]="disabled"
+       (click)="toggleDropdown()">
+
+    @if (!single) {
+      <div class="selected-items">
+        @if (selected.length === 0) {
+          <span class="text-muted">{{ placeholder }}</span>
+        }
+        @for (item of selected; track item?.id ?? item?.value ?? item) {
+          <span class="selected-item" (click)="$event.stopPropagation()">
+            {{ item[displayKey] }}
+            <i class="fa fa-times ms-1" (click)="removeItem(item); $event.stopPropagation()"></i>
+          </span>
+        }
+      </div>
+    }
+
+    @if (single) {
+      <div class="selected-items-single">
+        @if (selected.length <= 0) {
+          <span class="text-muted">{{ placeholder }}</span>
+        }
+        @for (item of selected; track item?.id ?? item?.value ?? item) {
+          <span class="selected-item-single" (click)="$event.stopPropagation()">
+            {{ item[displayKey] }}
+            <!-- <i class="fa fa-times ms-1" (click)="removeItem(item); $event.stopPropagation()"></i> -->
+          </span>
+        }
+      </div>
+    }
+
+    <i class="fa fa-chevron-down ms-2"></i>
+  </div>
+
+  <!-- Dropdown Menu -->
+  @if (isOpen) {
+    <ul class="rounded-4" style="max-height: 400px; overflow: auto">
+      @for (item of filteredOptions; track item?.id ?? item?.value ?? item) {
+        <li
+          class="ps-3"
+          [class.selected]="isSelected(item)"
+          (click)="selectItem(item); $event.stopPropagation()">
+          {{ item[displayKey] }}
+        </li>
+      }
+    </ul>
+  }
+</div>

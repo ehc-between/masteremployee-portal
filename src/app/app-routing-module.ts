@@ -10,6 +10,8 @@ import {Crm} from './pages/dashboards/crm/crm';
 import {Api} from './pages/dashboards/api/api';
 import {Toolbox} from './pages/dashboards/toolbox/toolbox';
 import {CompanyAdministration} from './pages/dashboards/company-administration/company-administration';
+import {User} from './pages/user/user';
+import {AuthGuard} from './@core/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboards/crm', pathMatch: 'full'},
@@ -28,7 +30,8 @@ const routes: Routes = [
       { path: 'toolbox', component: Toolbox },
       { path: 'company-administration', component: CompanyAdministration },
     ]
-  }
+  },
+  { path: 'user', component: User, canActivate: [AuthGuard] },
 ]
 
 @NgModule({

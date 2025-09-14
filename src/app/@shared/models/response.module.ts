@@ -116,3 +116,232 @@ export interface ApplicationTypeResponse {
 }
 
 
+/**
+ *
+ * Endpoint definitions
+ * MEE-REC
+ * Recruiter
+ *
+ */
+
+// ---------- Candidate Root ----------
+
+export interface CandidateResponse {
+  candidate_id: string
+  company_id: string
+  source: string
+  external_id: string
+  corporation_id: string | null
+
+  first_name: string | null
+  last_name: string | null
+  title: string | null
+  gender: string | null
+  marital_status: string | null
+  dob: string | null
+  work_status: string | null
+  description: string | null
+  notes: string | null
+  banned: number | null
+  rating: number | null
+
+  email: string | null
+  office_email: string | null
+  mobile_phone: string | null
+  home_phone: string | null
+  office_phone: string | null
+
+  facebook: string | null
+  linkedin: string | null
+  twitter: string | null
+  web: string | null
+
+  created_remote: string | null
+  updated_remote: string | null
+  nationality: string | null
+  language_id: string | null
+  address1: string | null
+  address2: string | null
+  postal_code: string | null
+  city: string | null
+  country: string | null
+  profile_picture: string | null
+  employee: number | null
+
+  terms_value: number | null
+  terms_created: string | null
+  terms_user_id: string | null
+
+  educations: CandidateEducationResponse[]
+  experiences: CandidateExperienceResponse[]
+  project_experiences: CandidateProjectExperienceResponse[]
+  skills: CandidateSkillResponse[]
+  languages: CandidateLanguageResponse[]
+  files: CandidateFileResponse[]
+  interviews: CandidateInterviewResponse[]
+  pipelines: CandidatePipelineResponse[]
+  phones: CandidatePhoneResponse[]
+
+  user_ids: string[]
+  company_ids: string[]
+  department_ids: string[]
+  industry_ids: string[]
+
+  created_at: string
+  updated_at: string | null
+}
+
+
+export interface CandidateCompactResponse {
+  candidate_id: string
+  company_id: string
+  source: string
+  external_id: string
+  corporation_id: string | null
+
+  first_name: string | null
+  last_name: string | null
+  title: string | null
+  gender: string | null
+  marital_status: string | null
+  dob: string | null
+  work_status: string | null
+  description: string | null
+  notes: string | null
+  banned: number | null
+  rating: number | null
+
+  email: string | null
+  office_email: string | null
+  mobile_phone: string | null
+  home_phone: string | null
+  office_phone: string | null
+
+  facebook: string | null
+  linkedin: string | null
+  twitter: string | null
+  web: string | null
+
+  created_remote: string | null
+  updated_remote: string | null
+  nationality: string | null
+  language_id: string | null
+  address1: string | null
+  address2: string | null
+  postal_code: string | null
+  city: string | null
+  country: string | null
+  profile_picture: string | null
+  employee: number | null
+
+  number_of_experiences: number | null
+  number_of_educations: number | null
+
+  // terms_value: number | null
+  // terms_created: string | null
+  // terms_user_id: string | null
+
+  // educations: CandidateEducationResponse[]
+  // experiences: CandidateExperienceResponse[]
+  // project_experiences: CandidateProjectExperienceResponse[]
+  // skills: CandidateSkillResponse[]
+  // languages: CandidateLanguageResponse[]
+  // files: CandidateFileResponse[]
+  // interviews: CandidateInterviewResponse[]
+  // pipelines: CandidatePipelineResponse[]
+  // phones: CandidatePhoneResponse[]
+  //
+  // user_ids: string[]
+  // company_ids: string[]
+  // department_ids: string[]
+  // industry_ids: string[]
+  //
+  // created_at: string
+  // updated_at: string | null
+}
+
+// ---------- Nested ----------
+
+export interface CandidateEducationResponse {
+  education_id: string | null
+  school_name: string | null
+  type: string | null
+  degree: string | null
+  location: string | null
+  start_date: string | null
+  end_date: string | null
+  description: string | null
+}
+
+export interface CandidateExperienceResponse {
+  experience_id: string | null
+  company_name: string | null
+  title: string | null
+  location: string | null
+  start_date: string | null
+  end_date: string | null
+  current: number | null
+  description: string | null
+}
+
+export interface CandidateProjectExperienceResponse {
+  project_experience_id: string | null
+  name: string | null
+  description: string | null
+  url: string | null
+  from_date: string | null
+  to_date: string | null
+}
+
+export interface CandidateSkillResponse {
+  skill_id: string | null
+  name: string | null
+}
+
+export interface CandidateLanguageResponse {
+  language_id: string | null
+  name: string | null
+  level: string | null
+}
+
+export interface CandidateFileResponse {
+  file_id: string | null
+  name: string | null
+  type: string | null
+  created: string | null
+}
+
+export interface CandidateInterviewResponse {
+  interview_id: string | null
+  name: string | null
+  notes: string | null
+  rating: number | null
+  start_datetime: string | null
+  end_datetime: string | null
+  created: string | null
+  updated: string | null
+  user_id: string | null
+  files: CandidateInterviewFileResponse[]
+}
+
+export interface CandidateInterviewFileResponse {
+  file_id: string | null
+  name: string | null
+}
+
+export interface CandidatePipelineResponse {
+  pipeline_id: string | null
+  user_id: string | null
+  category_id: string | null
+  project_id: string | null
+  created: string | null
+  updated: string | null
+}
+
+export interface CandidatePhoneResponse {
+  kind: string | null
+  prefix: string | null
+  number: string | null
+}
+
+

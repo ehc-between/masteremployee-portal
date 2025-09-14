@@ -12,6 +12,8 @@ import {Toolbox} from './pages/dashboards/toolbox/toolbox';
 import {CompanyAdministration} from './pages/dashboards/company-administration/company-administration';
 import {User} from './pages/user/user';
 import {AuthGuard} from './@core/guards/auth.guard';
+import {CandidateList} from './pages/recruiter/candidate/candidate-list/candidate-list';
+import {CandidateProfile} from './pages/recruiter/candidate/candidate-profile/candidate-profile';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboards/crm', pathMatch: 'full'},
@@ -24,14 +26,16 @@ const routes: Routes = [
   },
   {
     path: 'dashboards', children: [
-      { path: 'recruiter', component: Recruiter },
-      { path: 'crm', component: Crm },
-      { path: 'api', component: Api },
-      { path: 'toolbox', component: Toolbox },
-      { path: 'company-administration', component: CompanyAdministration },
+      { path: 'recruiter', component: Recruiter, canActivate: [AuthGuard]},
+      { path: 'crm', component: Crm, canActivate: [AuthGuard] },
+      { path: 'api', component: Api, canActivate: [AuthGuard] },
+      { path: 'toolbox', component: Toolbox, canActivate: [AuthGuard] },
+      { path: 'company-administration', component: CompanyAdministration, canActivate: [AuthGuard] },
     ]
   },
   { path: 'user', component: User, canActivate: [AuthGuard] },
+  { path: 'recruiter-candidates', component: CandidateList, canActivate: [AuthGuard] },
+  { path: 'recruiter-candidates/view/:id', component: CandidateProfile, canActivate: [AuthGuard] },
 ]
 
 @NgModule({

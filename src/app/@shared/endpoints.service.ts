@@ -22,7 +22,7 @@ import {
   COR_COY_1,
   COR_COY_2,
   COR_COY_3,
-  COR_COY_4, MEE_APP_0, MEE_APP_1, MEE_APP_2, MEE_APP_3, MEE_APP_4, MEE_INT_0,
+  COR_COY_4, MEE_APP_0, MEE_APP_1, MEE_APP_2, MEE_APP_3, MEE_APP_4, MEE_INT_0, MEE_REC_0, MEE_REC_1,
   USM_ENT_0,
   USM_ENT_2,
   USM_ENT_3,
@@ -47,7 +47,7 @@ import {
   PutResponse
 } from "./models/global/response-wrapper.service";
 import {
-  ApplicationResponse, ApplicationTypeResponse,
+  ApplicationResponse, ApplicationTypeResponse, CandidateCompactResponse, CandidateResponse,
   CompanyResponse,
   InvitationTokenVerificationResponse,
   LoginResponse,
@@ -482,6 +482,24 @@ export class EndpointService {
 
   mee_int_0(payload: MEE_INT_0, raiseErrorToast: boolean = true): Observable<PutResponse<any>> {
     return this.put(environment.coreApiUrl + 'integrations/recruiting/recman', payload, {raiseErrorToast: raiseErrorToast})
+  }
+
+
+
+  /**
+   *
+   * Endpoint definitions
+   * MEE-REC
+   * Recruiter
+   *
+   */
+
+  mee_rec_0(payload: MEE_REC_0, raiseErrorToast: boolean = true): Observable<PaginationResponse<CandidateCompactResponse[]>> {
+    return this.get(environment.coreApiUrl + 'recruiter/candidates', payload, {raiseErrorToast: raiseErrorToast})
+  }
+
+  mee_rec_1(payload: MEE_REC_1, raiseErrorToast: boolean = true): Observable<GetResponse<CandidateResponse>> {
+    return this.get(environment.coreApiUrl + 'recruiter/candidates/details', payload, {raiseErrorToast: raiseErrorToast})
   }
 }
 

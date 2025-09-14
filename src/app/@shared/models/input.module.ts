@@ -198,3 +198,15 @@ export interface _MEE_INT_0 extends Omit<MEE_INT_0, 'company_id'> {}
 
 
 
+// --------------------------- Recruiter Input Models ---------------------------
+export interface MEE_REC_0 extends pagination_input, sorting_input {
+  company_id: string;
+}
+export interface _MEE_REC_0 extends Omit<MEE_REC_0, 'company_id'> {}
+
+
+export interface MEE_REC_1 {
+  company_id: string;
+  candidate_id: string;
+}
+export interface _MEE_REC_1 extends Omit<MEE_REC_1, 'company_id'> {}

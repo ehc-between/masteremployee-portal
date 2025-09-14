@@ -38,6 +38,9 @@ import {provideToastr, ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule, provideAnimations} from '@angular/platform-browser/animations';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import { User } from './pages/user/user';
+import { CandidateList } from './pages/recruiter/candidate/candidate-list/candidate-list';
+import { CandidateListCard } from './pages/recruiter/candidate/candidate-list/components/candidate-list-card/candidate-list-card';
+import { CandidateProfile } from './pages/recruiter/candidate/candidate-profile/candidate-profile';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader();
@@ -70,7 +73,10 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     Api,
     CompanyAdministration,
     HeaderCompanySelect,
-    User
+    User,
+    CandidateList,
+    CandidateListCard,
+    CandidateProfile
   ],
   imports: [
     BrowserModule,

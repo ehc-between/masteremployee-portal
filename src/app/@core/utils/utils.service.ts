@@ -39,9 +39,9 @@ export function getInitials(initialsKeys: string[]): string {
   return initials
 }
 
-function convertDateUTCToLocal(date: Date) {
-  return new Date(date.getTime() - date.getTimezoneOffset() * 60000)
-}
+// function convertDateUTCToLocal(date: Date) {
+//   return new Date(date.getTime() - date.getTimezoneOffset() * 60000)
+// }
 
 function convertDateLocalToUTC(date: Date) {
   return new Date(date.getTime() + date.getTimezoneOffset() * 60000)
@@ -81,20 +81,89 @@ export function addHours(date: Date, hours: number){
     return add(date, {hours: hoursInt, minutes: minutes})
   }
 
-export function convertResponseDatetime(obj: any) {
-  for (const prop in obj) {
-    if (obj.hasOwnProperty(prop)) {
+function isFullISODateString(s: string): boolean {
+  // Accept: YYYY-MM-DD (not 00), YYYY-MM-DD HH:mm[:ss], or with 'T'
+  const m = s.match(/^(\d{4})-(\d{2})-(\d{2})(?:[ T](\d{2}):(\d{2})(?::(\d{2}))?)?$/);
+  if (!m) return false;
+  const [, y, mo, d] = m;
+  const month = Number(mo), day = Number(d);
+  return month >= 1 && month <= 12 && day >= 1 && day <= 31;
+}
 
-      // If prop is object, iterate recursively
-      if (typeof obj[prop] === 'object' && obj[prop] !== null) {
-        convertResponseDatetime(obj[prop]);
+function isYearMonthOrYear(s: string): { year: number; month?: number } | null {
+  // Handle "YYYY-MM-00", "YYYY-MM", "YYYY-00-00", "YYYY"
+  let m = s.match(/^(\d{4})-(\d{2})-00$/);
+  if (m) {
+    const year = Number(m[1]), month = Number(m[2]);
+    if (month >= 1 && month <= 12) return { year, month };
+  }
+  m = s.match(/^(\d{4})-(\d{2})$/);
+  if (m) {
+    const year = Number(m[1]), month = Number(m[2]);
+    if (month >= 1 && month <= 12) return { year, month };
+  }
+  m = s.match(/^(\d{4})-(?:00)-(?:00)$/);
+  if (m) return { year: Number(m[1]) };
+  m = s.match(/^(\d{4})$/);
+  if (m) return { year: Number(m[1]) };
+  return null;
+}
+
+function formatYearMonth(y: number, m?: number): string {
+  if (!m) return String(y);
+  // Localized "MMM yyyy" (e.g., Jan 2019)
+  const d = new Date(Date.UTC(y, m - 1, 1));
+  return new Intl.DateTimeFormat(undefined, { month: 'short', year: 'numeric' }).format(d);
+}
+
+// Your existing local converter fallback
+function convertDateUTCToLocal(date: Date): string {
+  // customize if you already have one
+  return new Intl.DateTimeFormat(undefined, {
+    year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit'
+  }).format(date);
+}
+
+// Main
+export function convertResponseDatetime(obj: any) {
+  if (obj == null) return;
+
+  if (Array.isArray(obj)) {
+    for (let i = 0; i < obj.length; i++) convertResponseDatetime(obj[i]);
+    return;
+  }
+
+  if (typeof obj === 'object') {
+    for (const prop in obj) {
+      if (!Object.prototype.hasOwnProperty.call(obj, prop)) continue;
+
+      const val = obj[prop];
+
+      if (val == null) continue;
+
+      if (typeof val === 'object') {
+        convertResponseDatetime(val);
+        continue;
       }
 
-      // If prop is string and ISO date, convert to local datetime
-      else if (typeof obj[prop] === 'string' && isISODateString(obj[prop])) {
-        const isoDateString = obj[prop].replace(' ', 'T');
-        const date = new Date(isoDateString);
-        obj[prop] = convertDateUTCToLocal(date);
+      if (typeof val === 'string') {
+        // 1) Full valid date → convert to local datetime
+        if (isFullISODateString(val)) {
+          const iso = val.includes('T') ? val : val.replace(' ', 'T');
+          const d = new Date(iso);
+          if (!isNaN(d.getTime())) obj[prop] = convertDateUTCToLocal(d);
+          continue;
+        }
+
+        // 2) Partial dates → format nicely (no parsing to Date)
+        const ym = isYearMonthOrYear(val);
+        if (ym) {
+          obj[prop] = formatYearMonth(ym.year, ym.month);
+          continue;
+        }
+
+        // else: leave other strings as-is
       }
     }
   }

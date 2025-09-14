@@ -1,0 +1,66 @@
+<div class="d-flex flex-row">
+  <div class="w-100 flex-lg-row-fluid mx-lg-13 position-relative">
+
+    <!-- overlay spinner -->
+    @if (loading) {
+      <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-opacity-50" style="z-index: 10;">
+        <div class="spinner-border" role="status" aria-label="Loading candidates"></div>
+      </div>
+    }
+
+    <!-- header / filters -->
+    <div class="d-flex d-lg-none align-items-center justify-content-end mb-10">
+      ...
+    </div>
+
+    <div class="d-flex flex-wrap flex-stack mb-6">
+      <h3 class="text-gray-800 fw-bold my-2">
+        Candidate base
+        <span class="fs-6 text-gray-500 fw-semibold ms-1">({{ candidates?.length || 0 }})</span>
+      </h3>
+      <div class="d-flex my-2">
+        <select name="status" data-control="select2" data-hide-search="true" class="form-select form-select-sm bg-body border-body w-125px">
+          <option value="Active" selected>Active</option>
+          <option value="Approved">In Progress</option>
+          <option value="Declined">To Do</option>
+          <option value="In Progress">Completed</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- grid -->
+    <div class="row g-6 mb-6 g-xl-9 mb-xl-9" [class.opacity-50]="loading" [class.pointer-events-none]="loading">
+      @for (candidate of candidates; track candidate.candidate_id) {
+        <div class="col-md-4">
+          <app-candidate-list-card [candidate]="candidate"></app-candidate-list-card>
+        </div>
+      }
+      @if (!loading && (!candidates || candidates.length === 0)) {
+        <div class="col-12 text-center text-muted py-10">No candidates found.</div>
+      }
+    </div>
+
+   <div class="mt-auto">
+     <!-- pagination -->
+     <ul class="pagination">
+       <li class="page-item previous" [class.disabled]="page === 1 || loading">
+         <a class="page-link" (click)="!loading && (page - 1 >= 1 ? goToPage(page - 1) : goToPage(1))">
+           <i class="previous"></i>
+         </a>
+       </li>
+
+       @for (_ of [].constructor(totalPages); let i = $index; track i) {
+         <li class="page-item" [class.active]="i + 1 === page" [class.disabled]="loading">
+           <a class="page-link" (click)="!loading && goToPage(i + 1)">{{ i + 1 }}</a>
+         </li>
+       }
+
+       <li class="page-item next" [class.disabled]="page === totalPages || loading">
+         <a class="page-link" (click)="!loading && (page + 1 <= totalPages ? goToPage(page + 1) : goToPage(totalPages))">
+           <i class="next"></i>
+         </a>
+       </li>
+     </ul>
+   </div>
+  </div>
+</div>
